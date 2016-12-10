@@ -1,5 +1,6 @@
 var React = require('react');
-var transparentBg = require('../styles').transparentBg;
+var Prompt = require('../components/Prompt');
+
 var PromptContainer = React.createClass({
   // Special way of passing data to component to get route info.  Better alternative to passing routes in as props.  Allows us to access through this.context.router //
   contextTypes: {
@@ -12,12 +13,12 @@ var PromptContainer = React.createClass({
     }
   },
   // Tied to input field, every time value changes, so will state.
-  onUpdateUser: function(e) {
+  handleUpdateUser: function(e) {
     this.setState({
       username: e.target.value
     })
   },
-  onSubmitUser: function(e) {
+  handleSubmitUser: function(e) {
     e.preventDefault();
     var username = this.state.username; // grab whatever username was on submit
     // Reset input field
@@ -43,28 +44,11 @@ var PromptContainer = React.createClass({
   },
   render: function() {
     return (
-      <div className="jumbotron col-sm-6 col-sm-offset-3 text-center" style={transparentBg}>
-        <h1>{this.props.route.header}</h1>
-        <div className="col-sm-12">
-          <form onSubmit={this.onSubmitUser}>
-            <div className="form-group">
-            <input
-              className="form-control"
-              placeholder="Github username"
-              type="text"
-              onChange={this.onUpdateUser}
-              value={this.state.username} />
-            </div>
-            <div className="form-group col-sm-4 col-sm-offset-4">
-              <button
-                className="btn btn-block btn-success"
-                type="submit">
-                  Continue
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
+      <Prompt
+        onSubmitUser={this.handleSubmitUser}
+        onUpdateUser={this.handleUpdateUser}
+        header={this.props.route.header}
+        username={this.state.username}/>
     )
   }
 })
