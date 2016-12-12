@@ -1,3 +1,5 @@
+// Container: Handles logic, passes data to child that renders UI
+
 var React = require('react');
 var Prompt = require('../components/Prompt');
 
