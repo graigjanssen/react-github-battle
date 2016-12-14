@@ -1,0 +1,61 @@
+'this' keyword
+
+Implicit binding - look "left of the dot" when function is invoked
+
+  Let's say we have an object
+
+  var me = {
+    name: 'Rick',
+    catchphrase: 'Lick lick lick my balls!',
+    sayName: function() {
+      console.log(this.name);
+    }
+  }
+
+  me.sayName(); <-- 'this' refers to the 'me' object, left of the dot!
+
+Explicit Binding
+
+  Here is where the mysterious call(), apply() and bind() functions come into play
+
+  Here's our object again, but no sayName method
+
+  var me = {
+    name: 'Rick',
+    catchphrase: 'Lick lick lick my balls!'
+  }
+
+  but now we make the function outside of the object
+
+  function sayName() {
+    console.log('Hi dickbags, Im ' + this.name);
+  }
+
+  Normally you'd be like, what the heck is 'this' gonna refer to.
+
+  sayName.call(me);  <-- boom
+
+  first argument of call() is the context for the function.  In other words, if we write a function using 'this' keyword and use call(), the first argument becomes 'this'.  Any additional arguments to call() are normal arguments to the function.
+
+  apply() allows the second argument to be an array of arguments.
+
+  bind() creates a new function that you can invoke later.  So something like...
+
+    var newFunc = sayName.bind(me);
+
+  In all of these, we see explicit binding of 'this'
+
+new binding
+
+  Some behind the scenes stuff going on, but we know this in practice
+
+    var Animal = function(color, name){
+      this.color = color;
+      this.name = name;
+    }
+
+  Since we use keyword 'new' to create new instances of Animal, 'this' refers to the new object that will be created.
+
+Window binding
+
+  Basically, when all else fails, 'this' will refer to the window object.  Note that in strict mode, it will not let you do it.
