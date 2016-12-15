@@ -6,5 +6,9 @@ function Results(props) {
     <div></div>
   )
 }
+Results.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  scores: PropTypes.array.isRequired
+}
 
 module.exports = Results;
