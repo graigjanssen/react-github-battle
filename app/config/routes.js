@@ -15,6 +15,7 @@ var Main = require('../components/Main');
 var Home = require('../components/Home');
 var PromptContainer = require('../containers/PromptContainer');
 var ConfirmBattleContainer = require('../containers/ConfirmBattleContainer');
+var ResultsContainer = require('../containers/ResultsContainer');
 
 // React-router objects behave as components.  Main component will be parent route, will render views that stay the same on every page like header, nav menu, footer. //
 
@@ -27,6 +28,7 @@ var routes = (
       <Route path="playerOne" header="Player One" component={PromptContainer}/>
       <Route path="playerTwo/:playerOne" header="Player Two" component={PromptContainer}/>
       <Route path="battle" component={ConfirmBattleContainer}/>
+      <Route path="results" component={ResultsContainer}/>
     </Route>
   </Router>
 );
