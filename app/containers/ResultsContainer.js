@@ -10,7 +10,6 @@ var ResultsContainer = React.createClass({
     }
   },
   componentDidMount: function() {
-    console.log('component mounted');
     // Pass playersInfo array to battle function, returns scores promise
     githubHelpers.battle(this.props.location.state.playersInfo)
     .then(function(scores){

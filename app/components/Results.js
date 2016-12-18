@@ -5,10 +5,8 @@ var styles = require('../styles');
 
 var UserDetails = require('./UserDetails');
 var UserDetailsWrapper = require('./UserDetailsWrapper');
+var MainContainer = require('./MainContainer');
 
-function puke(obj) {
-  return <pre>{JSON.stringify(obj, null, ' ')}</pre>
-}
 // Private SFC (Stateless Functional Component) - When you don't expect other files to need it but makes main component more succinct, DRYer
 
 function StartOver() {
@@ -22,20 +20,27 @@ function StartOver() {
 }
 
 function Results(props) {
+  // Show loading
+  if (props.isLoading === true){
+    return (
+      <p>LOADING!</p>
+    )
+  }
+
   // In case of tie
   if (props.scores[0] === props.scores[1]) {
     return (
-      <div className="jumbotron col-sm-12 text-center">
+      <MainContainer>
         <h1>It's a Trap...I mean Tie!</h1>
         <StartOver />
-      </div>
+      </MainContainer>
     )
   }
 
   var winningIndex = props.scores[0] > props.scores[1] ? 0 : 1;
   var losingIndex = winningIndex === 0 ? 1 : 0;
   return (
-    <div className="jumbotron col-sm-12 text-center" style={styles.transparentBg}>
+    <MainContainer>
       <h1>Results</h1>
       <div className="col-sm-8 col-sm-offset-2">
         <UserDetailsWrapper header="Winner">
@@ -46,7 +51,7 @@ function Results(props) {
         </UserDetailsWrapper>
       </div>
       <StartOver />
-    </div>
+    </MainContainer>
   )
 }
 Results.propTypes = {
