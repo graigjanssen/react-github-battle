@@ -6,6 +6,7 @@ var styles = require('../styles');
 var UserDetails = require('./UserDetails');
 var UserDetailsWrapper = require('./UserDetailsWrapper');
 var MainContainer = require('./MainContainer');
+var Loading = require('./Loading');
 
 // Private SFC (Stateless Functional Component) - When you don't expect other files to need it but makes main component more succinct, DRYer
 
@@ -23,7 +24,7 @@ function Results(props) {
   // Show loading
   if (props.isLoading === true){
     return (
-      <p>LOADING!</p>
+      <Loading text="Prepare to Battle" speed={100}/>
     )
   }
 
